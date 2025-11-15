@@ -13,8 +13,8 @@ class CitasSeeder extends Seeder
      */
     public function run(): void
     {
-        $doctorAnaId  = DB::table('usuarios')->where('email', 'ana.doctor@dental.com')->value('id_usuario');
-        $doctorLuisId = DB::table('usuarios')->where('email', 'luis.doctor@dental.com')->value('id_usuario');
+        $doctorAnaId  = DB::table('usuarios')->where('email', 'ana.doctor1@dental.com')->value('id_usuario');
+        $doctorLuisId = DB::table('usuarios')->where('email', 'luis.doctor1@dental.com')->value('id_usuario');
 
         $clienteJuanId  = DB::table('clientes')->where('email', 'juan@example.com')->value('id_cliente');
         $clienteLuciaId = DB::table('clientes')->where('email', 'lucia@example.com')->value('id_cliente');

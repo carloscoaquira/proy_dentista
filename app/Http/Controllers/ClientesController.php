@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\rago_horarios;
+use App\Models\clientes;
 use Illuminate\Http\Request;
 
-class RagoHorariosController extends Controller
+class ClientesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class RagoHorariosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(rago_horarios $rago_horarios)
+    public function show(clientes $clientes)
     {
         //
     }
@@ -42,7 +42,7 @@ class RagoHorariosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(rago_horarios $rago_horarios)
+    public function edit(clientes $clientes)
     {
         //
     }
@@ -50,7 +50,7 @@ class RagoHorariosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, rago_horarios $rago_horarios)
+    public function update(Request $request, clientes $clientes)
     {
         //
     }
@@ -58,7 +58,7 @@ class RagoHorariosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(rago_horarios $rago_horarios)
+    public function destroy(clientes $clientes)
     {
         //
     }

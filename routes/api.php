@@ -3,6 +3,20 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+use App\Http\Controllers\SucursalesController;
+use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\CitasPublicController;
+
+Route::prefix('v1')->group(function(){
+    //rutas publicas
+
+    //sucursales
+    Route::get('sucursales', [SucursalesController::class, 'index']);
+    Route::get('sucursales/{id}', [SucursalesController::class, 'show']);
+    // doctores
+    Route::get('usuarios', [UsuariosController::class, 'index']);
+    Route::get('usuarios/{id}', [UsuariosController::class, 'show']);
+    Route::get('usuarios/{id}/horario', [UsuariosController::class, 'horario']);
+
+    Route::post('citas/solicitar', [CitasPublicController::class, 'store']);
+});

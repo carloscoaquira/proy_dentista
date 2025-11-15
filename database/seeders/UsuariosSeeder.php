@@ -18,7 +18,6 @@ class UsuariosSeeder extends Seeder
         // Obtenemos IDs de roles
         $idRolAdmin        = DB::table('roles')->where('nombre', 'admin')->value('id_rol');
         $idRolDoctor       = DB::table('roles')->where('nombre', 'doctor')->value('id_rol');
-        $idRolRecepcionista = DB::table('roles')->where('nombre', 'recepcionista')->value('id_rol');
 
         // Sucursales
         $idSucursalCentral = DB::table('sucursales')->where('nombre', 'Sucursal Central')->value('id_sucursal');
@@ -28,7 +27,7 @@ class UsuariosSeeder extends Seeder
             [
                 'nombre'      => 'Carlos',
                 'apellido'    => 'Admin',
-                'email'       => 'admin@dental.com',
+                'email'       => 'admin1@dental.com',
                 'telefono'    => '70010001',
                 'password'    => Hash::make('admin123'), // login
                 'id_rol'      => $idRolAdmin,
@@ -41,7 +40,7 @@ class UsuariosSeeder extends Seeder
             [
                 'nombre'      => 'Ana',
                 'apellido'    => 'Pérez',
-                'email'       => 'ana.doctor@dental.com',
+                'email'       => 'ana.doctor1@dental.com',
                 'telefono'    => '70010002',
                 'password'    => Hash::make('doctor123'),
                 'id_rol'      => $idRolDoctor,
@@ -54,7 +53,7 @@ class UsuariosSeeder extends Seeder
             [
                 'nombre'      => 'Luis',
                 'apellido'    => 'García',
-                'email'       => 'luis.doctor@dental.com',
+                'email'       => 'luis.doctor1@dental.com',
                 'telefono'    => '70010003',
                 'password'    => Hash::make('doctor123'),
                 'id_rol'      => $idRolDoctor,
@@ -63,20 +62,7 @@ class UsuariosSeeder extends Seeder
                 'remember_token' => null,
                 'created_at'  => now(),
                 'updated_at'  => now(),
-            ],
-            [
-                'nombre'      => 'María',
-                'apellido'    => 'López',
-                'email'       => 'maria.recep@dental.com',
-                'telefono'    => '70010004',
-                'password'    => Hash::make('recep123'),
-                'id_rol'      => $idRolRecepcionista,
-                'id_sucursal' => $idSucursalCentral,
-                'estado'      => true,
-                'remember_token' => null,
-                'created_at'  => now(),
-                'updated_at'  => now(),
-            ],
+            ]
         ]);
     }
 }

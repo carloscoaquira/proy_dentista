@@ -21,11 +21,6 @@ return new class extends Migration
             $table->time('hora_fin');
 
             $table->timestamps();
-
-            $table->foreign('id_horario')
-                  ->references('id_horario')
-                  ->on('horarios')
-                  ->onDelete('cascade');
         });
     }
 

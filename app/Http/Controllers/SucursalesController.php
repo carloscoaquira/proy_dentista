@@ -12,7 +12,8 @@ class SucursalesController extends Controller
      */
     public function index()
     {
-        //
+        $sucursales = sucursales::all(); 
+        return response()->json($sucursales);
     }
 
     /**
@@ -34,9 +35,11 @@ class SucursalesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(sucursales $sucursales)
+    public function show($id)
     {
-        //
+        $sucursal = sucursales::findOrFail($id);
+
+        return response()->json($sucursal);
     }
 
     /**

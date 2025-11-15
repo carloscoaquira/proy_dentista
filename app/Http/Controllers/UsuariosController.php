@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\usuarios;
+use App\Models\roles;
+use App\Models\horarios;
 use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
@@ -12,7 +14,11 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        //
+        $idRolDoctor = roles::where('nombre', 'doctor')->value('id_rol');
+        $doctores = usuarios::where('id_rol', $idRolDoctor)
+            ->where('estado', true)
+            ->get();
+        return response()->json($doctores);
     }
 
     /**
@@ -34,9 +40,16 @@ class UsuariosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(usuarios $usuarios)
+    public function show($id)
     {
-        //
+        $idRolDoctor = roles::where('nombre', 'doctor')->value('id_rol');
+        $doctor = usuarios::with(['sucursal'])
+            ->where('id_rol', $idRolDoctor)
+            ->where('estado', true)
+            ->where('id_usuario', $id)
+            ->firstOrFail();
+
+        return response()->json($doctor);
     }
 
     /**
@@ -62,4 +75,33 @@ class UsuariosController extends Controller
     {
         //
     }
+    /**
+     * Devuelve el horario de un doctor (día + rangos).
+    */
+    public function horario($id)
+    {
+        $idRolDoctor = roles::where('nombre', 'doctor')->value('id_rol');
+
+        // Validamos que el usuario exista y sea doctor activo
+        $doctor = usuarios::where('id_rol', $idRolDoctor)
+            ->where('estado', true)
+            ->where('id_usuario', $id)
+            ->firstOrFail();
+
+        // Traemos sus horarios activos con sus rangos
+        $horarios = horarios::where('id_doctor', $doctor->id_usuario)
+            ->where('activo', true)
+            ->with('rangos')
+            ->get();
+
+        return response()->json([
+            'doctor'   => [
+                'id'       => $doctor->id_usuario,
+                'nombre'   => $doctor->nombre,
+                'apellido' => $doctor->apellido,
+            ],
+            'horarios' => $horarios,
+        ]);
+    }
+
 }

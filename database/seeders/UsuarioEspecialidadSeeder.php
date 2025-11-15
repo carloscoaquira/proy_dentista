@@ -13,8 +13,8 @@ class UsuarioEspecialidadSeeder extends Seeder
      */
     public function run(): void
     {
-        $doctorAnaId  = DB::table('usuarios')->where('email', 'ana.doctor@dental.com')->value('id_usuario');
-        $doctorLuisId = DB::table('usuarios')->where('email', 'luis.doctor@dental.com')->value('id_usuario');
+        $doctorAnaId  = DB::table('usuarios')->where('email', 'ana.doctor1@dental.com')->value('id_usuario');
+        $doctorLuisId = DB::table('usuarios')->where('email', 'luis.doctor1@dental.com')->value('id_usuario');
 
         $idGeneral    = DB::table('especialidades')->where('nombre', 'Odontología general')->value('id_especialidad');
         $idEndodoncia = DB::table('especialidades')->where('nombre', 'Endodoncia')->value('id_especialidad');
