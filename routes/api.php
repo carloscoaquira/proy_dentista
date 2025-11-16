@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SucursalesController;
 use App\Http\Controllers\UsuariosController;
-use App\Http\Controllers\CitasPublicController;
+use App\Http\Controllers\Api\AuthClienteController;
 
 Route::prefix('v1')->group(function(){
     //rutas publicas
@@ -18,5 +18,16 @@ Route::prefix('v1')->group(function(){
     Route::get('usuarios/{id}', [UsuariosController::class, 'show']);
     Route::get('usuarios/{id}/horario', [UsuariosController::class, 'horario']);
 
-    Route::post('citas/solicitar', [CitasPublicController::class, 'store']);
+    // AUTH CLIENTES (PÚBLICAS)
+    Route::post('clientes/registro', [AuthClienteController::class, 'registrar']);
+    Route::post('clientes/login', [AuthClienteController::class, 'login']);
+
+    // RUTAS PROTEGIDAS (CLIENTE LOGUEADO CON TOKEN)
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('cliente/perfil', [AuthClienteController::class, 'perfil']);
+        Route::post('logout', [AuthClienteController::class, 'logout']);
+
+        // 👇 Más adelante aquí irá: POST /citas
+        // Route::post('citas', [CitasController::class, 'store']);
+    });
 });

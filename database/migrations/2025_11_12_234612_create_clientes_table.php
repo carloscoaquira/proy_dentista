@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nro_documento', 50)->nullable()->unique();
             $table->string('email', 150)->nullable()->unique();
             $table->string('telefono', 32)->nullable();
+            $table->string('password');
             $table->timestamps();
         });
     }
