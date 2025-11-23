@@ -68,13 +68,13 @@ class AuthClienteController extends Controller
         ]);
     }
 
-    // 👤 Ver perfil del cliente logueado
+    // Ver perfil del cliente logueado
     public function perfil(Request $request)
     {
         return response()->json($request->user());
     }
 
-    // 🚪 Cerrar sesión (revocar token actual)
+    // Cerrar sesión (revocar token actual)
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
